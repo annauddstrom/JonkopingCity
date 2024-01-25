@@ -48,8 +48,6 @@ class Model {
         `, [store.name, store.url, store.district]);
       }
     }
-
-
   }
 
   async getAllStores() {
