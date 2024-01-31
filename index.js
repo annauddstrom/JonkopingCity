@@ -31,6 +31,12 @@ app.get('/storeDistrict/:district', async(req, res) => {
   res.json(stores)
 })
 
+app.get('/storeName/:name', async(req, res) => {
+  //check legit district {TODO}
+  const storeName = await Model.getStoreName(req.params.name)
+  res.json(storeName)
+})
+
 app.get('/stores', async (req, res) => {
   const stores = await Model.getAllStores();
   res.json(stores);

@@ -67,8 +67,16 @@ class Model {
     return res.rows;
   }
 
+  async getStoreName(name) {
+    const res = await this.client.query(`SELECT * FROM public.stores WHERE name = '${name}'`);
+    
+    return res.rows;
+  }
+
   async getStoreBySearch(search) {
     const res = await this.client.query(`SELECT * FROM public.stores WHERE name LIKE '%${search}%'`);
+
+
     return res.rows;
   }
 
