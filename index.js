@@ -15,10 +15,26 @@ app.get("/store/:id", async (req, res) => {
   res.json(store);
 });
 
+app.get("/storesWithUrl", async (req, res) => {
+  const stores = await Model.getStoresWithUrl();
+  res.json(stores);
+});
+
+app.get("/storeSearch/:search", async (req, res) => {
+  const stores = await Model.getStoreBySearch(req.params.search);
+  res.json(stores);
+});
+
 app.get("/storeDistrict/:district", async (req, res) => {
   //check legit district {TODO}
   const stores = await Model.getStoresInDistrict(req.params.district);
   res.json(stores);
+});
+
+app.get("/storeName/:name", async (req, res) => {
+  //check legit district {TODO}
+  const storeName = await Model.getStoreName(req.params.name);
+  res.json(storeName);
 });
 
 app.get("/stores", async (req, res) => {
