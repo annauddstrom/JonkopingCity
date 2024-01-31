@@ -9,7 +9,19 @@ app.get('/setup', async (req, res) => {
   res.json({success: true});
 });
 
-app.get('/', async (req, res) => {
+app.get('/store/:id', async(req, res) => {
+  //add digit check {TODO}
+  const store = await Model.getStore(req.params.id)
+  res.json(store)
+})
+
+app.get('/storeDistrict/:district', async(req, res) => {
+  //check legit district {TODO}
+  const stores = await Model.getStoresInDistrict(req.params.district)
+  res.json(stores)
+})
+
+app.get('/stores', async (req, res) => {
   const stores = await Model.getAllStores();
   res.json(stores);
 })

@@ -1,3 +1,4 @@
+const { query } = require('express');
 const { Client } = require('pg');
 
 class Model {
@@ -52,6 +53,25 @@ class Model {
 
   async getAllStores() {
     const res = await this.client.query('SELECT * FROM public.stores');
+    return res.rows;
+  }
+
+  async getStore(id) {
+    const res = await this.client.query(`SELECT * FROM public.stores WHERE id = ${id}`);
+    return res.rows;
+  }
+
+  async getStoresInDistrict(district) {
+
+    let query = "";
+
+    if(district == "null") {
+      query = `SELECT * FROM public.stores WHERE district IS NULL`
+    } else {
+      query = `SELECT * FROM public.stores WHERE district = '${district}'`
+    }
+
+    const res = await this.client.query(query);
     return res.rows;
   }
 
