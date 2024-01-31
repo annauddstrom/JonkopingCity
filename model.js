@@ -1,11 +1,12 @@
 const { query } = require('express');
 const { Client } = require('pg');
+require('dotenv').config();
 
 class Model {
   constructor() {
     this.client = new Client({
       user: 'postgres',
-      host: 'localhost',
+      host: process.env.POSTGRES_HOST || 'localhost',
       database: 'postgres',
       password: '12345',
       port: 5432,
