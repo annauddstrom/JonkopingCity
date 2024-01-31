@@ -57,8 +57,18 @@ class Model {
     return res.rows;
   }
 
+ async getStoresWithUrl() {
+    const res = await this.client.query(`SELECT * FROM public.stores WHERE url IS NOT NULL`);
+    return res.rows;
+ } 
+
   async getStore(id) {
     const res = await this.client.query(`SELECT * FROM public.stores WHERE id = ${id}`);
+    return res.rows;
+  }
+
+  async getStoreBySearch(search) {
+    const res = await this.client.query(`SELECT * FROM public.stores WHERE name LIKE '%${search}%'`);
     return res.rows;
   }
 
