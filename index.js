@@ -20,8 +20,9 @@ app.get('/storeDistrict/:district', async(req, res) => {
   const stores = await Model.getStoresInDistrict(req.params.district)
   res.json(stores)
 })
-
+//hejhej
 app.get('/stores', async (req, res) => {
+app.get('/', async (req, res) => {
   const stores = await Model.getAllStores();
   res.json(stores);
 })
