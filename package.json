@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "docker:build": "docker build -t jonkopingcity . && docker tag jonkopingcity localhost:5001/jonkopingcity && docker push localhost:5001/jonkopingcity"
+    "docker:build": "docker build -t jonkopingcity . && docker tag jonkopingcity localhost:5001/jonkopingcity && docker push localhost:5001/jonkopingcity",
+    "k8s:deploy": "kubectl apply -f kubernetes/deployment.yaml && kubectl apply -f kubernetes/service.yaml && kubectl rollout restart deployment jonkopingcity-deployment -n jonkopingcity",
+    "k8s:run": "kubectl port-forward svc/jonkopingcity-service 3000:3000 -n jonkopingcity"
   },
   "author": "",
   "license": "ISC",
