@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jonkopingcity-deployment
+  namespace: jonkopingcity
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jonkopingcity
+  template:
+    metadata:
+      labels:
+        app: jonkopingcity
+    spec:
+      containers:
+        - name: jonkopingcity
+          env:
+            - name: POSTGRES_HOST
+              value: "172.17.0.1"
+          image: localhost:5001/jonkopingcity
