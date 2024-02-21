@@ -4,6 +4,12 @@ const storeJson = require("./stores.json");
 const app = express();
 let Model = null;
 
+let p = __dirname + '/public/'
+console.log(p)
+
+app.use(express.static(p))
+
+
 app.get("/setup", async (req, res) => {
   await Model.setup(storeJson);
   res.json({ success: true });
