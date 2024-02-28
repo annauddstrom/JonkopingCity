@@ -16,6 +16,7 @@ a {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
+  text-decoration: none;
 }
 p {
   font-size: 1rem;
@@ -129,13 +130,15 @@ button:hover {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  text-align: center;
+  align-items: center;
 }
 .discoverContentH3Container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 5vh;
+  gap: 4vw;
 }
+
 .discoverContentHome2 {
   padding-top: 15vh;
   padding-bottom: 15vh;
@@ -146,15 +149,39 @@ button:hover {
   background-color: rgb(255, 255, 255);
 }
 .clickArea {
-  background-color: rgb(175, 175, 175);
-  height: 300px;
-  width: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 10vw;
-  margin-left: 10vw;
+  gap: 5vw;
+  width: 35vw; 
+  height: 35vw;
 }
+
+.clickArea p {
+  margin: 0; 
+  text-align: center; 
+  color: white;
+  font-size: 1.5rem;
+}
+
+.discoverAllButton {
+  margin-top: 3vh;
+}
+
+.imageDiscover1 {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url('imagesAndIcon/jkpgImageCity.jpeg');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+}
+
+.imageDiscover2 {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url('imagesAndIcon/JKPimage.jpeg');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+}
+
 
 
 /* discover page main content */
