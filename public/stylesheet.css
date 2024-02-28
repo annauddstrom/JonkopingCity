@@ -1,25 +1,38 @@
+/* universal styling */
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .header {
     width: 100%; 
+
 }
 
 h1, h2, h3, p, a {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
 }
 
+h1 {
+    font-size: 5rem;
+}
+
+/* navbar styling */
 .navbarContentContainer {
   height: 20vh;
   background-color: black;
-    display: flex; /* Använder Flexbox */
-    justify-content: space-between; /* Placerar innehållet på var sin sida */
-    align-items: center; /* Centrerar innehållet vertikalt */
-    padding: 0 20px; /* Lägger till lite utrymme på sidorna */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0 20px; 
     height: 15vh;
     background-color: rgb(175, 175, 175);
 }
 
 .navbarContentLeft, .navbarContentRight {
     display: flex;
-    align-items: center; /* Centrerar innehållet vertikalt i varje del */
+    align-items: center; 
 }
 
 .navbarContentRight {
@@ -38,16 +51,16 @@ h1, h2, h3, p, a {
 }
 
 .inputWithIcon {
-    position: relative; /* Gör så att positioneringen av barn-element kan styras relativt denna container */
+    position: relative; 
     display: flex; 
     align-items: center; 
 }
 
 .inputWithIcon .icon {
-    position: absolute; /* Positionerar ikonen absolut inom sin container */
+    position: absolute; 
     left: 10px; 
-    height: 20px; /* Justera storleken på din ikon */
-    width: 20px; /* Justera storleken på din ikon */
+    height: 20px; 
+    width: 20px; 
 }
 
 .inputWithIcon input[type="text"] {
@@ -60,12 +73,38 @@ h1, h2, h3, p, a {
     font-size: 1rem; 
 }
 /*Main content styling*/
+
+/* info section */
 .infoSectionHome {
-  height: 50vh;
+  height: 80vh;
+  background-color: pink;
 }
+
+.infoContentHome {
+    width: 80vw;
+    padding-top: 15vh;
+    margin-left: 8vw;
+}
+
+.infoContentP {
+    width: 30vw;
+    margin-top: 3vh;
+}
+
+/* discover section */
 .discoverSectionHome {
   height: 50vh;
 }
+
+
+
+.headingContentDiscover {
+    margin-left: 8vw;
+    padding-top: 15vh;
+}
+
+
+
 
 /*Footer styling*/
 .footerContentContainer {
@@ -94,3 +133,4 @@ h1, h2, h3, p, a {
   display: flex;
   justify-content: center;
   align-items: center;
+}
