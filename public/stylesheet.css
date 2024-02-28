@@ -1,8 +1,64 @@
+.header {
+    width: 100%; 
+}
+
+h1, h2, h3, p, a {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 .navbarContentContainer {
   height: 20vh;
   background-color: black;
+    display: flex; /* Använder Flexbox */
+    justify-content: space-between; /* Placerar innehållet på var sin sida */
+    align-items: center; /* Centrerar innehållet vertikalt */
+    padding: 0 20px; /* Lägger till lite utrymme på sidorna */
+    height: 15vh;
+    background-color: rgb(175, 175, 175);
 }
 
+.navbarContentLeft, .navbarContentRight {
+    display: flex;
+    align-items: center; /* Centrerar innehållet vertikalt i varje del */
+}
+
+.navbarContentRight {
+    gap: 5vw;
+}
+
+.navbarContentRight a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: black;
+}
+
+.jkpgLogo img {
+    width: 15vw;
+    height: auto;
+}
+
+.inputWithIcon {
+    position: relative; /* Gör så att positioneringen av barn-element kan styras relativt denna container */
+    display: flex; 
+    align-items: center; 
+}
+
+.inputWithIcon .icon {
+    position: absolute; /* Positionerar ikonen absolut inom sin container */
+    left: 10px; 
+    height: 20px; /* Justera storleken på din ikon */
+    width: 20px; /* Justera storleken på din ikon */
+}
+
+.inputWithIcon input[type="text"] {
+    width: 20vw; 
+    height: 5vh;
+    padding-left: 3vw; 
+    padding-right: 3vw;
+    border-radius: 40px; 
+    border: 1px solid #ccc;
+    font-size: 1rem; 
+}
 /*Main content styling*/
 .infoSectionHome {
   height: 50vh;
@@ -38,4 +94,3 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
