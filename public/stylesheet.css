@@ -7,6 +7,8 @@ h1, h2, h3, p, a {
 }
 
 .navbarContentContainer {
+  height: 20vh;
+  background-color: black;
     display: flex; /* Använder Flexbox */
     justify-content: space-between; /* Placerar innehållet på var sin sida */
     align-items: center; /* Centrerar innehållet vertikalt */
@@ -57,3 +59,38 @@ h1, h2, h3, p, a {
     border: 1px solid #ccc;
     font-size: 1rem; 
 }
+/*Main content styling*/
+.infoSectionHome {
+  height: 50vh;
+}
+.discoverSectionHome {
+  height: 50vh;
+}
+
+/*Footer styling*/
+.footerContentContainer {
+  height: 40vh;
+  background-color: rgb(153, 109, 109);
+  display: flex;
+}
+.footerContentLogo {
+  height: 40vh;
+  width: 35vw;
+}
+.footerContentText {
+  height: 40vh;
+  width: 35vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.footerP {
+  margin: 0;
+}
+.footerContentLinks {
+  height: 40vh;
+  width: 35vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
