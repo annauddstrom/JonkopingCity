@@ -1,7 +1,7 @@
 /* universal styling */
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .header {
@@ -15,13 +15,14 @@ p,
 a {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: 0;
+  padding: 0;
 }
 p {
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 h1 {
-    font-size: 5rem;
+  font-size: 5rem;
 }
 
 button {
@@ -43,17 +44,18 @@ button:hover {
 .navbarContentContainer {
   height: 20vh;
   background-color: black;
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 0 20px; 
-    height: 15vh;
-    background-color: rgb(175, 175, 175);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 15vh;
+  background-color: rgb(175, 175, 175);
 }
 
-.navbarContentLeft, .navbarContentRight {
-    display: flex;
-    align-items: center; 
+.navbarContentLeft,
+.navbarContentRight {
+  display: flex;
+  align-items: center;
 }
 
 .navbarContentRight {
@@ -72,16 +74,16 @@ button:hover {
 }
 
 .inputWithIcon {
-    position: relative; 
-    display: flex; 
-    align-items: center; 
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .inputWithIcon .icon {
-    position: absolute; 
-    left: 10px; 
-    height: 20px; 
-    width: 20px; 
+  position: absolute;
+  left: 10px;
+  height: 20px;
+  width: 20px;
 }
 
 .inputWithIcon input[type="text"] {
@@ -108,14 +110,52 @@ button:hover {
 }
 
 .infoContentP {
-    width: 30vw;
-    margin-top: 3vh;
+  width: 30vw;
+  margin-top: 3vh;
 }
 
 /* discover section */
 .discoverSectionHome {
-  height: 50vh;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
+.discoverContentHome1 {
+  padding-top: 15vh;
+  padding-bottom: 15vh;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.discoverContentH3Container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5vh;
+}
+.discoverContentHome2 {
+  padding-top: 15vh;
+  padding-bottom: 15vh;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(255, 255, 255);
+}
+.clickArea {
+  background-color: rgb(175, 175, 175);
+  height: 300px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10vw;
+  margin-left: 10vw;
+}
+
 
 
 /* discover page main content */
@@ -179,6 +219,7 @@ button:hover {
     display: block;
   }
 
+
 /*Footer styling*/
 .footerContentContainer {
   height: 40vh;
@@ -217,4 +258,3 @@ button:hover {
   text-decoration: none;
   color: black;
 }
-
