@@ -27,6 +27,7 @@ app.get("/storesWithUrl", async (req, res) => {
 });
 
 app.get("/storeSearch/:search", async (req, res) => {
+  console.log("backend", req.params.search)
   const stores = await Model.getStoreBySearch(req.params.search);
   res.json(stores);
 });
@@ -42,6 +43,15 @@ app.get("/storeName/:name", async (req, res) => {
   const storeName = await Model.getStoreName(req.params.name);
   res.json(storeName);
 });
+
+//get stores shopping/services not working now
+app.get("/storeType/:storeType", async (req, res) => {
+  //check legit district {TODO}
+  const storeType = await Model.getStoreType(req.params.storeType);
+  res.json(storeType);
+});
+
+
 
 app.get("/stores", async (req, res) => {
   const stores = await Model.getAllStores();
