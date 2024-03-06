@@ -27,6 +27,7 @@ app.get("/storesWithUrl", async (req, res) => {
 });
 
 app.get("/storeSearch/:search", async (req, res) => {
+  console.log("backend", req.params.search)
   const stores = await Model.getStoreBySearch(req.params.search);
   res.json(stores);
 });

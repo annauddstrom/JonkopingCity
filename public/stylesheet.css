@@ -191,15 +191,23 @@ button:hover {
 }
 
 .headingContentDiscover {
-    padding-left: 10vw;
-    padding-top: 15vh;
-    margin-bottom: 5vh;
+  padding-top: 10vh;
+  margin-bottom: 5vh; 
+  width: 100vw;
+  display: flex;
+  justify-content: center;
 }
 
-.sortButtonsContentDiscover, .addButtonContentDiscover {
-    margin-bottom: 10px; 
-    margin-left: 10vw;
-    margin-right: 10vw;
+.sortButtonsContentDiscover {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+.addButtonContentDiscover {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  margin-top: 3vh;
 }
 
 .buttonAdd {
@@ -250,11 +258,20 @@ button:hover {
     display: block;
   }
 
+  .allStoresBySort {
+    margin-top: 10vh;
+    margin-bottom: 20vh;
+    width: 100vw;
+    display: grid;
+    justify-content: center;
+  }
+
    #allStoresContainer a {
     display: block;
-    padding: 10px;
+    padding: 20px;
+    width: 55vw;
     margin-bottom: 5px;
-    background-color: red;
+    background-color: rgb(169, 169, 169);
     text-decoration: none;
     color: black;
     border: 1px solid #ddd;

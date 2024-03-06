@@ -81,7 +81,7 @@ class Model {
   }
 
   async getStoreBySearch(search) {
-    const res = await this.client.query(`SELECT * FROM public.stores WHERE name LIKE '%${search}%'`);
+    const res = await this.client.query(`SELECT * FROM public.stores WHERE name ILIKE '%${search}%'`);
 
 
     return res.rows;
