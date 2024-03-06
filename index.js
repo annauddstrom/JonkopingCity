@@ -43,6 +43,15 @@ app.get("/storeName/:name", async (req, res) => {
   res.json(storeName);
 });
 
+//get stores shopping/services not working now
+app.get("/storeType/:storeType", async (req, res) => {
+  //check legit district {TODO}
+  const storeType = await Model.getStoreType(req.params.storeType);
+  res.json(storeType);
+});
+
+
+
 app.get("/stores", async (req, res) => {
   const stores = await Model.getAllStores();
   res.json(stores);

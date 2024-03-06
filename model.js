@@ -25,6 +25,7 @@ class Model {
           name text,
           url text,
           district text,
+          storeType text,
           CONSTRAINT stores_pkey PRIMARY KEY (id)
       );
     `);
@@ -45,9 +46,9 @@ class Model {
 
       if (checkForStore.rows.length === 0) {
         await this.client.query(`
-          INSERT INTO public.stores (name, url, district)
-          VALUES ($1, $2, $3)
-        `, [store.name, store.url, store.district]);
+          INSERT INTO public.stores (name, url, district, storeType)
+          VALUES ($1, $2, $3, $4)
+        `, [store.name, store.url, store.district, store.storeType]);
       }
     }
   }
@@ -69,6 +70,12 @@ class Model {
 
   async getStoreName(name) {
     const res = await this.client.query(`SELECT * FROM public.stores WHERE name = '${name}'`);
+    
+    return res.rows;
+  }
+
+  async getStoreType(storeType) {
+    const res = await this.client.query(`SELECT * FROM public.stores WHERE storeType = '${storeType}'`);
     
     return res.rows;
   }

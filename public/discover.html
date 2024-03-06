@@ -28,22 +28,57 @@
       <h1>SEE THE STORES IN <br> JÖNKÖPING CITY</h1>
     </div>
     <div class="sortButtonsContentDiscover">
-      <button class="buttonSort">Discover All</button>
-      <button class="buttonSort">Shopping</button>
-      <button class="buttonSort">Services</button>
+      <button class="buttonSort" id="allStoresButton" onclick="allStoresButton()">Discover All</button>
+      <button class="buttonSort" id="getStoresShopping" onclick="getStoresShopping()">Shopping</button>
+      <button class="buttonSort" id="getStoresService" onclick="getStoresService()">Services</button>
       <div class="dropdown">
-        <button class="buttonSort dropdownLocation" id="locationDropdown">Location <span class="arrowIconLocation">&#9660;</span></button>
-        <div class="dropdownContent">
-          <a href="#">Väster</a>
-          <a href="#">Öster</a>
-          <a href="#">Torpa</a>
+        <button class="buttonSort dropdownLocation" id="locationDropdown" >Location <span class="arrowIconLocation">&#9660;</span></button>
+        <div class="dropdownContent" id="storesContainer">
+          <a href="#" id="västerStores" onclick="getStoresVäster()">Väster</a>
+          <a href="#" id="österStores" onclick="getStoresÖster()">Öster</a>
+          <a href="#" id="otherStores" onclick="getStoresOther()">Other</a>
         </div>
       </div>
     </div>
     <div class="addButtonContentDiscover">
       <button class="buttonAdd">Add Store</button>
     </div>
+    <div class="allStoresBySort" id="allStoresContainer"> 
+
+    </div>
   </section>
+  <footer>
+    <div class="footerContentContainer">
+      <div class="footerContentLogo">
+        <a class="jkpgLogo">
+          <img
+            src="/imagesAndIcon/jkpgLogo.png"
+            alt="Jonkoping city logotype"
+          />
+        </a>
+      </div>
+      <div class="footerContentText">
+        <h3>Jönköping City AB</h3>
+        <p class="footerP">c/o Jönköpings municipality</p>
+        <p class="footerP">Rådhusparken 1</p>
+        <p class="footerP">551 89 Jönköping</p>
+        <p class="footerP">Phone: 036-16 40 74</p>
+        <p class="footerP">Visit us: Rådhuset, first floor</p>
+      </div>
+      <div class="footerContentLinks">
+        <ul>
+          <li class="footerListItem">
+            <a href="index.html" class="footerLink">Home</a>
+          </li>
+          <li class="footerListItem">
+            <a href="discover.html" class="footerLink">Discover</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+
 
 
   </body>
