@@ -79,6 +79,13 @@ async function filterStores() {
 }
 
 
+const searchInput = document.getElementById('searchInput')
+searchInput.addEventListener("keypress", e => {
+    if (e.key === "Enter"){
+        searchStores()
+    }
+})
+
 //not working
 async function searchStores() {
     const searchValue = document.getElementById('searchInput').value;
