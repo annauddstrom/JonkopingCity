@@ -35,7 +35,7 @@ html
             #myModal.modal
                 .modal-content
                     span.close &times;
-                    form(action="/addStore" method="POST")
+                    form#addForm(action="/addStore" method="POST")
                         label(for="store_name") Store name
                         br
                         input(type="text" id="name" name="name")

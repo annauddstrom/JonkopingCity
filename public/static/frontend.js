@@ -29,7 +29,7 @@ function displayStores(stores) {
         visitSiteButtonElement.onclick = async () => {
             window.location.href = store.url;
         }
-        storeCard.appendChild(visiteSiteButtonElement);
+        storeCard.appendChild(visitSiteButtonElement);
 
         const editButtonElement = document.createElement('button');
         editButtonElement.textContent = 'Edit';
@@ -147,7 +147,7 @@ async function searchStores() {
 }
 
 function clearModal() {
-    var form = document.querySelector('form').reset();
+    var form = document.getElementById('addForm').reset();
 }
 
 function populateModal() {
@@ -167,6 +167,7 @@ var span = document.getElementsByClassName("close")[0];
 // When the user clicks on the button, open the modal
 addBtn.onclick = function() {
   modal.style.display = "block";
+  clearModal();
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -181,14 +182,13 @@ window.onclick = function(event) {
   }
 }
 
-document.querySelector('form').addEventListener('submit', function(_event){
-    var form = document.querySelector('form')
+document.getElementById('addForm').addEventListener('submit', function(_event){
+    var form = document.getElementById('addForm')
     if (form.hasChildNodes()) {
         searchInput.value = form.childNodes[2].value
         getUpdateStores()
         searchStores()
     }
     modal.style.display = "none";
-    clearModal();
     return true;
 });
