@@ -77,3 +77,23 @@ async function filterStores() {
     console.log(currentFilteredStores);
     displayStores(currentFilteredStores);
 }
+
+async function searchStores() {
+    const searchValue = document.getElementById('searchInput').value;
+    console.log(searchValue)
+
+    try {
+        const response = await fetch(`/storeSearch/${searchValue}`);
+
+        const stores = await response.json();
+        console.log(stores)
+
+        console.log('hej', stores); // Logga sökresultaten
+        // Anropa funktionen för att visa sökresultaten
+        displayStores(stores);
+    } catch (error) {
+        console.error('Error fetching search results:', error);
+        console.log('hejdå');
+    }
+}
+
