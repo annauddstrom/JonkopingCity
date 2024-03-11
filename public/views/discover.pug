@@ -1,0 +1,39 @@
+html
+    include head.pug
+
+    body
+        header.header#header
+            nav.navbarContentContainer
+                div.navbarContentLeft
+                    a.jkpgLogo(href="index.html")
+                        img(src="/imagesAndIcon/jkpgLogo.png", alt="Jonkoping city logotype")
+                div.navbarContentRight
+                    a(href="discover.html") Discover
+                    div.inputWithIcon
+                        img.icon(src="/imagesAndIcon/searchIcon.png", alt="Search")
+                        input#searchInput(type="text", placeholder="Search..")
+        
+        section.storesSectionDiscover
+            .headingContentDiscover 
+                h1 SEE THE STORES IN <br> JÖNKÖPING CITY
+            .sortButtonsContentDiscover
+                button.buttonSort#allStoresButton(onclick="filterStoreType('All')") Discover All
+                button.buttonSort#getStoresShopping(onclick="filterStoreType('Shopping')") Shopping
+                button.buttonSort#getStoresService(onclick="filterStoreType('Service')") Services
+                .dropdown
+                    button.buttonSort.dropdownLocation#locationDropdown Location 
+                        span.arrowIconLocation &#9660;
+                    .dropdownContent#storesContainer
+                        a#westStores(onclick="filterStoreDistrict('Väster')") Väster
+                        a#eastStores(onclick="filterStoreDistrict('Öster')") Öster
+                        a#otherStores(onclick="filterStoreDistrict('Other')") Other    
+                        a#otherStores(onclick="filterStoreDistrict('All')") All   
+        
+            .addButtonContentDiscover
+                button.buttonAdd Add Store
+
+            .allStoresBySort#allStoresContainer
+        
+        include footer.pug
+
+    script(src="frontend.js")

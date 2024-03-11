@@ -1,19 +1,33 @@
 const express = require("express");
-const ModelClass = require("./model.js");
-const storeJson = require("./stores.json");
+const ModelClass = require("./data_access_layer/model.js");
 const app = express();
 let Model = null;
 
-let p = __dirname + '/public/'
+let p = __dirname + '/public/static'
 console.log(p)
 
 app.use(express.static(p))
 
+app.set('view engine', 'pug')
+
+app.set('views', __dirname + '/public/views')
 
 app.get("/setup", async (req, res) => {
   await Model.setup(storeJson);
   res.json({ success: true });
 });
+
+app.get("/pug", (req, res) => { 
+  res.render('index', { title: 'Hey', message: 'Hello there!'})
+})
+
+app.get("/pug2", async(req, res) => { 
+  Model.getAllStores().then((stores) => {
+    console.log(stores)
+    res.stores = stores
+    res.render('discover', {stores: stores})
+  })
+})
 
 app.get("/store/:id", async (req, res) => {
   //add digit check {TODO}

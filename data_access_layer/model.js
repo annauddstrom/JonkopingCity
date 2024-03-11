@@ -1,6 +1,7 @@
 const { query } = require('express');
 const { Client } = require('pg');
 require('dotenv').config();
+const setup = require('./setup.js');
 
 class Model {
   constructor() {
@@ -17,51 +18,14 @@ class Model {
     await this.client.connect();
   }
 
-  async setup(storeJson) {
-    await this.client.query(`
-      CREATE TABLE IF NOT EXISTS public.stores
-      (
-          id SERIAL NOT NULL,
-          name text,
-          url text,
-          district text,
-          storeType text,
-          CONSTRAINT stores_pkey PRIMARY KEY (id)
-      );
-    `);
-
-    await this.client.query(`
-      ALTER TABLE IF EXISTS public.stores OWNER to postgres;
-    `);
-
-    for (const store of storeJson) {
-      const checkForStore = await this.client.query(`
-        SELECT * FROM public.stores
-        WHERE
-         name = $1
-        LIMIT 1
-      `, [store.name]);
-
-      console.log(checkForStore.rows);
-
-      if (checkForStore.rows.length === 0) {
-        await this.client.query(`
-          INSERT INTO public.stores (name, url, district, storeType)
-          VALUES ($1, $2, $3, $4)
-        `, [store.name, store.url, store.district, store.storeType]);
-      }
-    }
+  async setup() {
+    await setup(this.client)
   }
 
   async getAllStores() {
     const res = await this.client.query('SELECT * FROM public.stores');
     return res.rows;
   }
-
- async getStoresWithUrl() {
-    const res = await this.client.query(`SELECT * FROM public.stores WHERE url IS NOT NULL`);
-    return res.rows;
- } 
 
   async getStore(id) {
     const res = await this.client.query(`SELECT * FROM public.stores WHERE id = ${id}`);
@@ -81,7 +45,7 @@ class Model {
   }
 
   async getStoreBySearch(search) {
-    const res = await this.client.query(`SELECT * FROM public.stores WHERE name ILIKE '%${search}%'`);
+    const res = await this.client.query(`SELECT * FROM public.stores WHERE name LIKE '%${search}%'`);
 
 
     return res.rows;

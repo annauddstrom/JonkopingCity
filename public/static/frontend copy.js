@@ -1,5 +1,6 @@
 //get stores by location Väster
 
+
 async function getStoresVäster() {
     const district = 'Väster'; // Du kan byta ut detta med användarens val
     try {
@@ -52,7 +53,9 @@ async function allStoresButton() {
 
 //get stores shopping
 
+
 async function getStoresShopping() {
+    console.log(stores)
     const storeType = 'Shopping'; // Du kan byta ut detta med användarens val
     try {
         const response = await fetch(`/storeType/${storeType}`);
@@ -115,17 +118,7 @@ function displayStores(stores) {
         }    
         storeLink.href = store.url; // Här kan du lägga till butikens faktiska länk
 
-        // Skapa element för varje attribut och lägg till dem i butikslänken
-        // const nameElement = document.createElement('p');
-        // nameElement.textContent = `Name: ${store.name}`;
-        // storeLink.appendChild(nameElement);
-
-        // const urlElement = document.createElement('p');
-        // urlElement.textContent = `URL: ${store.url}`;
-        // storeLink.appendChild(urlElement);
-
         const districtElement = document.createElement('p');
-        console.log(store)
         districtElement.textContent = `District: ${store.district}`;
         storeLink.appendChild(districtElement);
 
@@ -145,3 +138,37 @@ searchInput.addEventListener("keypress", e => {
         searchStores()
     }
 })
+
+
+async function loadStores() {
+    try {
+        const response = await fetch(`/stores`).then((stores) => {
+        console.log(stores)
+        return stores
+        });
+        const stores = await response.json();
+        displayStores(stores);
+    } catch (error) {
+        console.error('Error fetching stores:', error);
+    }
+}
+
+var loadedStores = loadStores().then((stores) => {
+    console.log(loadedStores)
+})
+
+function filterLocation(location) {
+    var filteredstores = stores.filter(store => store.district === location)
+
+    displayStores(filteredstores)
+}
+
+function filterStoreType(storetype) {
+    if (storetype === 'All') {
+        displayStores(stores)
+        return
+    }
+    var filteredstores = stores.filter(store => store.storeType === storetype)
+    displayStores(filteredstores)
+    console.log(filteredstores)
+}

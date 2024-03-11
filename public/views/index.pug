@@ -1,0 +1,43 @@
+html 
+    include head.pug
+    
+    body
+        header.header#header
+            nav.navbarContentContainer
+                div.navbarContentLeft
+                    a.jkpgLogo(href="index.html")
+                        img(src="/imagesAndIcon/jkpgLogo.png", alt="Jonkoping city logotype")
+                div.navbarContentRight
+                    a(href="discover.html") Discover
+                    div.inputWithIcon
+                        img.icon(src="/imagesAndIcon/searchIcon.png", alt="Search")
+                        input#searchInput(type="text", placeholder="Search..")
+        
+        section.infoSectionHome
+            div.infoContentHome
+                h1 WELCOME TO YOUR
+                br
+                h1 JÖNKÖPING CITY
+                p.infoContentP Jkpg City är fyllt av butiker, kultur, upplevelser, caféer och restauranger som ramas in av fantastiska grönområden och vackra sjöar.
+        
+        section.discoverSectionHome
+            div.discoverContentHome1
+                h1 Discover Jönköping
+                div.discoverContentH3Container
+                    h3 STORES
+                    h3 SERVICES
+                    h3 FOOD
+                p Lorem ipsum dolor sit amet consectetur. Libero vitae dictum eu ipsum risus imperdiet purus. Scelerisque rhoncus purus eget ac nibh in nibh id. Pulvinar
+                a.discoverAllButton(href="discover.html")
+                    button Discover all
+            div.discoverContentHome2
+                a(href="#")
+                    div.clickArea.imageDiscover1
+                        p Discover all Shopping <br> in Jönköping
+                a(href="#")
+                    div.clickArea.imageDiscover2
+                        p Discover all Services <br> in Jönköping
+        
+        include footer.pug
+
+    script(src="frontend.js")
