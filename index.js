@@ -2,6 +2,10 @@ const express = require("express");
 const ModelClass = require("./data_access_layer/model.js");
 const app = express();
 let Model = null;
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.json());
 
 let p = __dirname + '/public/static'
 console.log(p)
@@ -13,7 +17,7 @@ app.set('view engine', 'pug')
 app.set('views', __dirname + '/public/views')
 
 app.get("/setup", async (req, res) => {
-  await Model.setup(storeJson);
+  await Model.setup();
   res.json({ success: true });
 });
 
@@ -65,11 +69,19 @@ app.get("/storeType/:storeType", async (req, res) => {
   res.json(storeType);
 });
 
-
-
 app.get("/stores", async (req, res) => {
   const stores = await Model.getAllStores();
   res.json(stores);
+});
+
+app.delete("/store/:id", async (req, res) => {
+  await Model.deleteStore(req.params.id);
+  res.json({ success: true });
+});
+
+app.post("/addStore", async (req, res) => {
+  console.log(req.body)
+  await Model.addStore(req.body.name, req.body.url, req.body.district, req.body.storeType);
 });
 
 const startServer = async () => {

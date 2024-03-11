@@ -30,7 +30,33 @@ html
                         a#otherStores(onclick="filterStoreDistrict('All')") All   
         
             .addButtonContentDiscover
-                button.buttonAdd Add Store
+                button.buttonAdd#buttonAdd Add Store
+
+            #myModal.modal
+                .modal-content
+                    span.close &times;
+                    form(action="/addStore" method="POST")
+                        label(for="store_name") Store name
+                        br
+                        input(type="text" id="name" name="name")
+                        br
+                        label(for="store_url") Store url
+                        br
+                        input(type="text" id="url" name="url")
+                        br
+                        label(for="district") Store district
+                        br
+                        input(type="text" id="district" name="district")
+                        br
+                        label(for="storeType") Store type
+                        br
+                        input(type="radio" id="shopping" name="storeType" value="Shopping")
+                        label(for="shopping") Shopping
+                        input(type="radio" id="service" name="storeType" value="Service")
+                        label(for="service") Service
+                        br
+                        br
+                        input(type="submit" value="Add store")
 
             .allStoresBySort#allStoresContainer
         

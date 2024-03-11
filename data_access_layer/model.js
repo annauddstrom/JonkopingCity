@@ -45,7 +45,7 @@ class Model {
   }
 
   async getStoreBySearch(search) {
-    const res = await this.client.query(`SELECT * FROM public.stores WHERE name LIKE '%${search}%'`);
+    const res = await this.client.query(`SELECT * FROM public.stores WHERE name ILIKE '%${search}%'`);
 
 
     return res.rows;
@@ -65,6 +65,13 @@ class Model {
     return res.rows;
   }
 
+  async deleteStore(id) {
+    await this.client.query(`DELETE FROM public.stores WHERE id = ${id}`);
+  }
+
+  async addStore(name, url, district, storeType) {
+    await this.client.query(`INSERT INTO public.stores (name, url, district, storeType) VALUES ('${name}', '${url}', '${district}', '${storeType}')`);
+  }
 }
 
 module.exports = Model;

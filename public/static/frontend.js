@@ -1,4 +1,3 @@
-
 function displayStores(stores) {
     const storesContainer = document.getElementById('allStoresContainer');
 
@@ -7,29 +6,58 @@ function displayStores(stores) {
 
     // Skapa och lägg till butikslänkar
     stores.forEach(store => {
-        const storeLink = document.createElement('a');
-        storeLink.innerText = `Name: ${store.name}`;
+        const storeCard = document.createElement('div');
+        storeCard.className = 'storeCard';
+        storeCard.innerText = `Name: ${store.name}`;
         if(store.url) {
-            if (!store.url.includes('https')) {
+            if (!store.url.includes('https') || !store.url.includes('http')) {
                 // Lägg till "https" om det saknas
                 store.url = 'https://' + store.url;
             }    
         }
-        storeLink.href = store.url; // Här kan du lägga till butikens faktiska länk
-
 
         const districtElement = document.createElement('p');
         districtElement.textContent = `District: ${store.district}`;
-        storeLink.appendChild(districtElement);
+        storeCard.appendChild(districtElement);
 
         const storeTypeElement = document.createElement('p');
         storeTypeElement.textContent = `Type of store: ${store.storetype}`;
-        storeLink.appendChild(storeTypeElement);
+        storeCard.appendChild(storeTypeElement);
+
+        const visitSiteButtonElement = document.createElement('button');
+        visitSiteButtonElement.textContent = 'Visit site';
+        visitSiteButtonElement.onclick = async () => {
+            window.location.href = store.url;
+        }
+        storeCard.appendChild(visiteSiteButtonElement);
+
+        const editButtonElement = document.createElement('button');
+        editButtonElement.textContent = 'Edit';
+        editButtonElement.onclick = async () => {
+
+        }
+        storeCard.appendChild(editButtonElement);
+
+        const deleteButtonElement = document.createElement('button');
+        deleteButtonElement.textContent = 'Delete';
+        deleteButtonElement.onclick = async () => {
+            try {
+                const response = await fetch(`/store/${store.id}`, {
+                    method: 'DELETE'
+                });
+                const stores = await response.json();
+                getUpdateStores()
+            } catch (error) {
+                console.error('Error fetching search results:', error);
+            }
+        }
+        storeCard.appendChild(deleteButtonElement);
 
         // Lägg till butikslänken i behållaren
-        storesContainer.appendChild(storeLink);
+        storesContainer.appendChild(storeCard);
     });
 }
+
 
 var loadedStores = {};
 var districtFilter = 'All';
@@ -45,6 +73,18 @@ window.addEventListener('load', async () => {
     console.error('Error fetching stores:', error);
   }
 });
+
+async function getUpdateStores() {
+    try {
+        const response = await fetch('/stores');
+        const stores = await response.json();
+        loadedStores = stores;
+        filterStores();
+    } catch (error) {
+        console.error('Error fetching stores:', error);
+    }
+
+}
 
 async function filterStoreType(storetype) {
     storetypeFilter = storetype;
@@ -106,3 +146,49 @@ async function searchStores() {
     }
 }
 
+function clearModal() {
+    var form = document.querySelector('form').reset();
+}
+
+function populateModal() {
+
+}
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var addBtn = document.getElementById("buttonAdd");
+var editBtn = document.getElementById("buttonEdit");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+addBtn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+document.querySelector('form').addEventListener('submit', function(_event){
+    var form = document.querySelector('form')
+    if (form.hasChildNodes()) {
+        searchInput.value = form.childNodes[2].value
+        getUpdateStores()
+        searchStores()
+    }
+    modal.style.display = "none";
+    clearModal();
+    return true;
+});
