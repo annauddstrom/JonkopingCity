@@ -78,6 +78,8 @@ async function filterStores() {
     displayStores(currentFilteredStores);
 }
 
+
+//not working
 async function searchStores() {
     const searchValue = document.getElementById('searchInput').value;
     console.log(searchValue)
