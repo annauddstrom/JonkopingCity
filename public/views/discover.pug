@@ -1,96 +1,95 @@
-html
-    include head.pug
+include html.pug
+include head.pug
+body
+    header.header#header
+        nav.navbarContentContainer
+            div.navbarContentLeft
+                a.jkpgLogo(href="/")
+                    img(src="/imagesAndIcon/jkpgLogo.png", alt="Jonkoping city logotype")
+            div.navbarContentRight
+                a(href="/discover") Discover
+                div.inputWithIcon
+                    img.icon(src="/imagesAndIcon/searchIcon.png", alt="Search")
+                    if search
+                        input#searchInput(type="text", placeholder="Search..", value=search)
+                    else
+                        input#searchInput(type="text", placeholder="Search..", value="")
+    
+    section.storesSectionDiscover
+        .headingContentDiscover 
+            h1 SEE THE STORES IN <br> JÖNKÖPING CITY
+        .sortButtonsContentDiscover
+            button.buttonSort#allStoresButton(onclick= "resetFilters()") Discover All
+            button.buttonSort#getStoresShopping(onclick="filterStoreType('Shopping')") Shopping
+            button.buttonSort#getStoresService(onclick="filterStoreType('Service')") Services
+            .dropdown
+                button.buttonSort.dropdownLocation#locationDropdown Location 
+                    span.arrowIconLocation &#9660;
+                .dropdownContent#storesContainer
+                    a#westStores(onclick="filterStoreDistrict('Väster')") Väster
+                    a#eastStores(onclick="filterStoreDistrict('Öster')") Öster
+                    a#otherStores(onclick="filterStoreDistrict('Other')") Other    
+                    a#otherStores(onclick="filterStoreDistrict('All')") All   
+    
+        .addButtonContentDiscover
+            button.buttonAdd#buttonAdd Add Store
 
-    body
-        header.header#header
-            nav.navbarContentContainer
-                div.navbarContentLeft
-                    a.jkpgLogo(href="/")
-                        img(src="/imagesAndIcon/jkpgLogo.png", alt="Jonkoping city logotype")
-                div.navbarContentRight
-                    a(href="/discover") Discover
-                    div.inputWithIcon
-                        img.icon(src="/imagesAndIcon/searchIcon.png", alt="Search")
-                        if search
-                            input#searchInput(type="text", placeholder="Search..", value=search)
-                        else
-                            input#searchInput(type="text", placeholder="Search..", value="")
-        
-        section.storesSectionDiscover
-            .headingContentDiscover 
-                h1 SEE THE STORES IN <br> JÖNKÖPING CITY
-            .sortButtonsContentDiscover
-                button.buttonSort#allStoresButton(onclick= "resetFilters()") Discover All
-                button.buttonSort#getStoresShopping(onclick="filterStoreType('Shopping')") Shopping
-                button.buttonSort#getStoresService(onclick="filterStoreType('Service')") Services
-                .dropdown
-                    button.buttonSort.dropdownLocation#locationDropdown Location 
-                        span.arrowIconLocation &#9660;
-                    .dropdownContent#storesContainer
-                        a#westStores(onclick="filterStoreDistrict('Väster')") Väster
-                        a#eastStores(onclick="filterStoreDistrict('Öster')") Öster
-                        a#otherStores(onclick="filterStoreDistrict('Other')") Other    
-                        a#otherStores(onclick="filterStoreDistrict('All')") All   
-        
-            .addButtonContentDiscover
-                button.buttonAdd#buttonAdd Add Store
-
-            #myAddModal.modal
-                .modal-content
-                    span.close &times;
-                    form#addForm(action="/addStore" method="POST")
-                        label(for="store_name" required) Store name
-                        br
-                        input(type="text" id="name" name="name")
-                        br
-                        label(for="store_url") Store url
-                        br
-                        input(type="text" id="url" name="url")
-                        br
-                        label(for="district") Store district
-                        br
-                        input(type="text" id="district" name="district")
-                        br
-                        label(for="storeType") Store type
-                        br
-                        input(type="radio" id="shopping" name="storeType" value="Shopping" required)
-                        label(for="shopping") Shopping
-                        input(type="radio" id="service" name="storeType" value="Service" required)
-                        label(for="service") Service
-                        br
-                        br
-                        input(type="submit" value="Add store")
+        #myAddModal.modal
+            .modal-content
+                span.close &times;
+                form#addForm(action="/addStore" method="POST")
+                    label(for="name" required) Store name
+                    br
+                    input(type="text" id="name" name="name")
+                    br
+                    label(for="url") Store url
+                    br
+                    input(type="text" id="url" name="url")
+                    br
+                    label(for="district") Store district
+                    br
+                    input(type="text" id="district" name="district")
+                    br
+                    label Store type
+                    br
+                    input(type="radio" id="shopping" name="storeType" value="Shopping" required)
+                    label(for="shopping") Shopping
+                    input(type="radio" id="service" name="storeType" value="Service" required)
+                    label(for="service") Service
+                    br
+                    br
+                    input(type="submit" value="Add store")
 
 
-            #myEditModal.modal
-                .modal-content
-                    span.close &times;
-                    form#editForm(action="/editStore" method="POST")
-                        label(for="store_name") Store name
-                        br
-                        input(type="text" id="name" name="name" required)
-                        br
-                        label(for="store_url") Store url
-                        br
-                        input(type="text" id="url" name="url")
-                        br
-                        label(for="district") Store district
-                        br
-                        input(type="text" id="district" name="district")
-                        br
-                        label(for="storeType") Store type
-                        br
-                        input(type="radio" id="shopping" name="storeType" value="Shopping" required)
-                        label(for="shopping") Shopping
-                        input(type="radio" id="service" name="storeType" value="Service" required)
-                        label(for="service") Service
-                        br
-                        br
-                        input(type="submit" value="Edit store")
-                        input(type="hidden" id="id" name="id")
+        #myEditModal.modal
+            .modal-content
+                span.close &times;
+                form#editForm(action="/editStore" method="POST")
+                    label(for="name") Store name
+                    br
+                    input(type="text" id="name" name="name" required)
+                    br
+                    label(for="url") Store url
+                    br
+                    input(type="text" id="url" name="url")
+                    br
+                    label(for="district") Store district
+                    br
+                    input(type="text" id="district" name="district")
+                    br
+                    label Store type
+                    br
+                    input(type="radio" id="shopping" name="storeType" value="Shopping" required)
+                    label(for="shopping") Shopping
+                    input(type="radio" id="service" name="storeType" value="Service" required)
+                    label(for="service") Service
+                    br
+                    br
+                    input(type="submit" value="Edit store")
+                    input(type="hidden" id="id" name="id")
 
-            .allStoresBySort#allStoresContainer
-        
-        include footer.pug
+        .allStoresBySort#allStoresContainer
+    
+    include footer.pug
 
-    include discoverScripts.pug
+include discoverScripts.pug
