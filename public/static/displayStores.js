@@ -64,24 +64,26 @@ async function filterStoreDistrict(district) {
 }
 
 async function filterStores() {
-    var currentFilteredStores = loadedStores;
-    if (storetypeFilter === 'All') {
-        currentFilteredStores = loadedStores;
+    getUpdateStores().then(() => {
+        var currentFilteredStores = loadedStores;
+        if (storetypeFilter === 'All') {
+            currentFilteredStores = loadedStores;
+            console.log(currentFilteredStores);
+        } else {
+            currentFilteredStores = currentFilteredStores.filter(store => store.storetype === storetypeFilter);
+        }
+
+        if (districtFilter === 'All') {
+            currentFilteredStores = currentFilteredStores
+        } else if (districtFilter === 'Other') {
+            currentFilteredStores = currentFilteredStores.filter(store => store.district !== 'Väster' && store.district !== 'Öster');
+        } else {
+            currentFilteredStores = currentFilteredStores.filter(store => store.district === districtFilter);
+        }
+
         console.log(currentFilteredStores);
-    } else {
-        currentFilteredStores = currentFilteredStores.filter(store => store.storetype === storetypeFilter);
-    }
-
-    if (districtFilter === 'All') {
-        currentFilteredStores = currentFilteredStores
-    } else if (districtFilter === 'Other') {
-        currentFilteredStores = currentFilteredStores.filter(store => store.district !== 'Väster' && store.district !== 'Öster');
-    } else {
-        currentFilteredStores = currentFilteredStores.filter(store => store.district === districtFilter);
-    }
-
-    console.log(currentFilteredStores);
-    displayStores(currentFilteredStores);
+        displayStores(currentFilteredStores);
+    });
 }
 
 const searchInput = document.getElementById('searchInput')
