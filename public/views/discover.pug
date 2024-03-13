@@ -5,19 +5,22 @@ html
         header.header#header
             nav.navbarContentContainer
                 div.navbarContentLeft
-                    a.jkpgLogo(href="index.html")
+                    a.jkpgLogo(href="/")
                         img(src="/imagesAndIcon/jkpgLogo.png", alt="Jonkoping city logotype")
                 div.navbarContentRight
-                    a(href="discover.html") Discover
+                    a(href="/discover") Discover
                     div.inputWithIcon
                         img.icon(src="/imagesAndIcon/searchIcon.png", alt="Search")
-                        input#searchInput(type="text", placeholder="Search..")
+                        if search
+                            input#searchInput(type="text", placeholder="Search..", value=search)
+                        else
+                            input#searchInput(type="text", placeholder="Search..", value="")
         
         section.storesSectionDiscover
             .headingContentDiscover 
                 h1 SEE THE STORES IN <br> JÖNKÖPING CITY
             .sortButtonsContentDiscover
-                button.buttonSort#allStoresButton(onclick="filterStoreType('All')") Discover All
+                button.buttonSort#allStoresButton(onclick= "resetFilters()") Discover All
                 button.buttonSort#getStoresShopping(onclick="filterStoreType('Shopping')") Shopping
                 button.buttonSort#getStoresService(onclick="filterStoreType('Service')") Services
                 .dropdown
@@ -32,11 +35,11 @@ html
             .addButtonContentDiscover
                 button.buttonAdd#buttonAdd Add Store
 
-            #myModal.modal
+            #myAddModal.modal
                 .modal-content
                     span.close &times;
                     form#addForm(action="/addStore" method="POST")
-                        label(for="store_name") Store name
+                        label(for="store_name" required) Store name
                         br
                         input(type="text" id="name" name="name")
                         br
@@ -50,16 +53,44 @@ html
                         br
                         label(for="storeType") Store type
                         br
-                        input(type="radio" id="shopping" name="storeType" value="Shopping")
+                        input(type="radio" id="shopping" name="storeType" value="Shopping" required)
                         label(for="shopping") Shopping
-                        input(type="radio" id="service" name="storeType" value="Service")
+                        input(type="radio" id="service" name="storeType" value="Service" required)
                         label(for="service") Service
                         br
                         br
                         input(type="submit" value="Add store")
 
+
+            #myEditModal.modal
+                .modal-content
+                    span.close &times;
+                    form#editForm(action="/editStore" method="POST")
+                        label(for="store_name") Store name
+                        br
+                        input(type="text" id="name" name="name" required)
+                        br
+                        label(for="store_url") Store url
+                        br
+                        input(type="text" id="url" name="url")
+                        br
+                        label(for="district") Store district
+                        br
+                        input(type="text" id="district" name="district")
+                        br
+                        label(for="storeType") Store type
+                        br
+                        input(type="radio" id="shopping" name="storeType" value="Shopping" required)
+                        label(for="shopping") Shopping
+                        input(type="radio" id="service" name="storeType" value="Service" required)
+                        label(for="service") Service
+                        br
+                        br
+                        input(type="submit" value="Edit store")
+                        input(type="hidden" id="id" name="id")
+
             .allStoresBySort#allStoresContainer
         
         include footer.pug
 
-    script(src="frontend.js")
+    include discoverScripts.pug

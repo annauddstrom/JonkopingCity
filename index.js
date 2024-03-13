@@ -21,28 +21,24 @@ app.get("/setup", async (req, res) => {
   res.json({ success: true });
 });
 
-app.get("/pug", (req, res) => { 
+app.get("/", (req, res) => { 
   res.render('index', { title: 'Hey', message: 'Hello there!'})
 })
 
-app.get("/pug2", async(req, res) => { 
-  Model.getAllStores().then((stores) => {
-    console.log(stores)
-    res.stores = stores
-    res.render('discover', {stores: stores})
-  })
+app.use("/discover/:search", (req, res, next) => {
+  var search = req.params.search;
+  app.locals.search = search;
+  res.redirect(`/discover`)
 })
 
-app.get("/store/:id", async (req, res) => {
-  //add digit check {TODO}
-  const store = await Model.getStore(req.params.id);
-  res.json(store);
-});
-
-app.get("/storesWithUrl", async (req, res) => {
-  const stores = await Model.getStoresWithUrl();
-  res.json(stores);
-});
+app.get("/discover", async(req, res) => { 
+  Model.getAllStores().then((stores) => {
+    var search = app.locals.search;
+    app.locals.search = null;
+    res.stores = stores
+    res.render('discover', {stores: stores, search: search})
+  })
+})
 
 app.get("/storeSearch/:search", async (req, res) => {
   console.log("backend", req.params.search)
@@ -50,24 +46,6 @@ app.get("/storeSearch/:search", async (req, res) => {
   res.json(stores);
 });
 
-app.get("/storeDistrict/:district", async (req, res) => {
-  //check legit district {TODO}
-  const stores = await Model.getStoresInDistrict(req.params.district);
-  res.json(stores);
-});
-
-app.get("/storeName/:name", async (req, res) => {
-  //check legit district {TODO}
-  const storeName = await Model.getStoreName(req.params.name);
-  res.json(storeName);
-});
-
-//get stores shopping/services not working now
-app.get("/storeType/:storeType", async (req, res) => {
-  //check legit district {TODO}
-  const storeType = await Model.getStoreType(req.params.storeType);
-  res.json(storeType);
-});
 
 app.get("/stores", async (req, res) => {
   const stores = await Model.getAllStores();
@@ -75,6 +53,8 @@ app.get("/stores", async (req, res) => {
 });
 
 app.delete("/store/:id", async (req, res) => {
+  console.log(req.params.id)
+  console.log("deleting")
   await Model.deleteStore(req.params.id);
   res.json({ success: true });
 });
@@ -82,6 +62,13 @@ app.delete("/store/:id", async (req, res) => {
 app.post("/addStore", async (req, res) => {
   console.log(req.body)
   await Model.addStore(req.body.name, req.body.url, req.body.district, req.body.storeType);
+  res.status(204).end();
+});
+
+app.post("/editStore", async (req, res) => {
+  console.log(req.body)
+  await Model.updateStore(req.body.id, req.body.name, req.body.url, req.body.district, req.body.storeType);
+  res.status(204).end();
 });
 
 const startServer = async () => {

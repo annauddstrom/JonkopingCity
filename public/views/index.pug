@@ -5,10 +5,10 @@ html
         header.header#header
             nav.navbarContentContainer
                 div.navbarContentLeft
-                    a.jkpgLogo(href="index.html")
+                    a.jkpgLogo(href="/")
                         img(src="/imagesAndIcon/jkpgLogo.png", alt="Jonkoping city logotype")
                 div.navbarContentRight
-                    a(href="discover.html") Discover
+                    a(href="/discover") Discover
                     div.inputWithIcon
                         img.icon(src="/imagesAndIcon/searchIcon.png", alt="Search")
                         input#searchInput(type="text", placeholder="Search..")
@@ -28,7 +28,7 @@ html
                     h3 SERVICES
                     h3 FOOD
                 p Lorem ipsum dolor sit amet consectetur. Libero vitae dictum eu ipsum risus imperdiet purus. Scelerisque rhoncus purus eget ac nibh in nibh id. Pulvinar
-                a.discoverAllButton(href="discover.html")
+                a.discoverAllButton(href="/discover")
                     button Discover all
             div.discoverContentHome2
                 a(href="#")
@@ -39,5 +39,4 @@ html
                         p Discover all Services <br> in Jönköping
         
         include footer.pug
-
-    script(src="frontend.js")
+        include indexScripts.pug

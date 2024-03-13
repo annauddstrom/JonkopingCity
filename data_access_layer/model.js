@@ -23,30 +23,12 @@ class Model {
   }
 
   async getAllStores() {
-    const res = await this.client.query('SELECT * FROM public.stores');
-    return res.rows;
-  }
-
-  async getStore(id) {
-    const res = await this.client.query(`SELECT * FROM public.stores WHERE id = ${id}`);
-    return res.rows;
-  }
-
-  async getStoreName(name) {
-    const res = await this.client.query(`SELECT * FROM public.stores WHERE name = '${name}'`);
-    
-    return res.rows;
-  }
-
-  async getStoreType(storeType) {
-    const res = await this.client.query(`SELECT * FROM public.stores WHERE storeType = '${storeType}'`);
-    
+    const res = await this.client.query('SELECT * FROM public.stores ORDER BY name ASC');
     return res.rows;
   }
 
   async getStoreBySearch(search) {
-    const res = await this.client.query(`SELECT * FROM public.stores WHERE name ILIKE '%${search}%'`);
-
+    const res = await this.client.query(`SELECT * FROM public.stores WHERE name ILIKE '%${search}%' ORDER BY name ASC`);
 
     return res.rows;
   }
@@ -66,11 +48,17 @@ class Model {
   }
 
   async deleteStore(id) {
+    console.log("deleting")
     await this.client.query(`DELETE FROM public.stores WHERE id = ${id}`);
   }
 
   async addStore(name, url, district, storeType) {
     await this.client.query(`INSERT INTO public.stores (name, url, district, storeType) VALUES ('${name}', '${url}', '${district}', '${storeType}')`);
+  }
+
+  async updateStore(id, name, url, district, storeType) {
+    console.log(id, name, url, district, storeType)
+    await this.client.query(`UPDATE public.stores SET name = '${name}', url = '${url}', district = '${district}', storeType = '${storeType}' WHERE id = ${id}`);
   }
 }
 
